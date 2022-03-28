@@ -1936,6 +1936,7 @@ Hibernate supports four different fetching strategies:
 * Sub-select Fetching.
 #### Q. How primary key is created by using hibernate?
 #### Q. How can we reattach any detached objects in Hibernate?
+![Java Exception](https://www.baeldung.com/wp-content/uploads/2016/07/2016-07-11_13-38-11-1024x551.png)
 #### Q. What are different ways to disable hibernate second level cache?
 #### Q. What is ORM metadata?
 #### Q. Which one is the default transaction factory in hibernate?
