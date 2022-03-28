@@ -1905,9 +1905,9 @@ The Configuration object is used to configure and bootstrap Hibernate. The appli
 ## Q. How can we use new custom interfaces to enhance functionality of built-in interfaces of hibernate?
 We can use extension interfaces in order to add any required functionality which isn’t supported by built-in interfaces.
 #### Q. What are POJOs and what is their significance?
-#### Q. How can we invoke stored procedures in hibernate?
+## Q. How can we invoke stored procedures in hibernate?
 @NamedStoredProcedureQuery
-#### Q. What are the benefits of using Hibernate template?
+## Q. What are the benefits of using Hibernate template?
 HibernateTemplate simplifies interactions with Hibernate Session.
 
 The functions that are common are simplified to single method calls.
@@ -1915,11 +1915,11 @@ The functions that are common are simplified to single method calls.
 The sessions get automatically closed.
 
 The exceptions get automatically caught and are converted to runtime exceptions.
-#### Q. How can we get hibernate statistics?
+## Q. How can we get hibernate statistics?
 Hibernate can collect and log useful statistics about each database query and the whole session. This needs to be activated by setting the system property hibernate.generate_statistics to true and the log level for org.hibernate.stat to DEBUG.
 #### Q. How can we reduce database write action times in Hibernate?
 #### Q. When an instance goes in detached state in hibernate?
-#### Q. What the four ORM levels are in hibernate?
+## Q. What the four ORM levels are in hibernate?
 The four levels are:
 * Pure Relational
 * Light Object Mapping
@@ -1928,18 +1928,23 @@ The four levels are:
 #### Q. What is the default cache service of hibernate?
 #### Q. What are the two mapping associations used in hibernate?
 #### Q. What is the usage of Hibernate QBC API?
-#### Q. In how many ways, objects can be fetched from database in hibernate?
+## Q. In how many ways, objects can be fetched from database in hibernate?
 Hibernate supports four different fetching strategies:
 * Join Fetching.
 * Batch Fetching.
 * Select Fetching.
 * Sub-select Fetching.
 #### Q. How primary key is created by using hibernate?
-#### Q. How can we reattach any detached objects in Hibernate?
+## Q. How can we reattach any detached objects in Hibernate?
 ![Java Exception](https://www.baeldung.com/wp-content/uploads/2016/07/2016-07-11_13-38-11-1024x551.png)
 #### Q. What are different ways to disable hibernate second level cache?
-#### Q. What is ORM metadata?
-#### Q. Which one is the default transaction factory in hibernate?
+## Q. What is ORM metadata?
+**Mata Data:** Often referred to as data that describes other data, metadata is structured reference data that helps to sort and identify attributes of the information it describes.
+The ORM uses the metadata to generate the code used to access the tables. For example, if it's a date column then it generates the code to deal with that column as a date.
+
+It will read foreign keys and primary keys to build relationships in the code as well as for generating the proper SQL syntax.
+## Q. Which one is the default transaction factory in hibernate?
+In Hibernate, default transaction factory is JDBCTransactionFactory. But we can change it by setting the property hibernate.transaction.factory_class.
 #### Q. What is the role of JMX in hibernate?
 #### Q. In how many ways objects can be identified in Hibernate?
 #### Q. What different fetching strategies are of hibernate?
