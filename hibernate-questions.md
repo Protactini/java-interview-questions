@@ -1770,27 +1770,27 @@ In the hibernate session we can maintain only one employee object in persistent 
 </div>
 
 #### Q. What is difference between Hibernate save(), saveOrUpdate() and persist() methods?
-#### Q. What will happen if we don’t have no-args constructor in Entity bean?
+## Q. What will happen if we don’t have no-args constructor in Entity bean?
 The instance of the entity bean cannot be created when there is no no-arg (default) constructor.
-#### Q. What is difference between sorted collection and ordered collection, which one is better?
+## Q. What is difference between sorted collection and ordered collection, which one is better?
 An ordered collection means that the elements of the collection have a specific order. The order is independent of the value. A List is an example.
 A sorted collection means that not only does the collection have order, but the order depends on the value of the element. A SortedSet is an example.
 In contrast, a collection without any order can maintain the elements in any order. A Set is an example.
-#### Q. What are the collection types in Hibernate?
+## Q. What are the collection types in Hibernate?
 The persistent collections injected by Hibernate behave like ArrayList , HashSet , TreeSet , HashMap or TreeMap 
-#### Q. Why we should not make Entity Class final?
+## Q. Why we should not make Entity Class final?
 The use of proxies is the core feature of Hibernate (one of the most popular ORM frameworks for Java Projects) for implementing key performance features e.g. lazy loading and lazy associations fetching. In order to use a proxy in place of a real class, your hibernate persistence class must be either non-final or the implementation of an interface that declares all of the public methods. 
-#### Q. What is the benefit of native sql query support in hibernate?
+## Q. What is the benefit of native sql query support in hibernate?
 You can use native SQL to express database queries if you want to utilize database-specific features such as query hints or the CONNECT keyword in Oracle. 
 Limitations of HQL:
 * HQL Queries can not perform DDL operations
 * HQL Queries Can not be used in PL/SQL Programming
 * HQL Queries can not be used to insert Single record into table
 * HQL Queries gives negligible performance degradation because Conversion(HQL to SQL) when compare SQL.
-#### Q. What is Named SQL Query? What are the benefits of Named SQL Query?
+## Q. What is Named SQL Query? What are the benefits of Named SQL Query?
 Named queries are compiled when SessionFactory is instantiated (so, essentially, when your application starts up).
 The obvious advantage, therefore, is that all your named queries are validated at that time rather than failing upon execution. 
-#### Q. How to log hibernate generated sql queries in log files?
+## Q. How to log hibernate generated sql queries in log files?
 You need to enable logging for the the following categories:
 ```java
 org.hibernate.SQL   - set to debug to log all SQL DML statements as they are executed
