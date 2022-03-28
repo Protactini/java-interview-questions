@@ -1897,21 +1897,43 @@ Lazy Fetching with join fetch.
 ## Q. What is the requirement for a Java object to become a Hibernate entity object? 
 The class must have a public or protected, no-argument constructor. 
 #### Q. How do you log SQL queries issued by the Hibernate framework in Java application?
-#### Q. What is the difference between the transient, persistent and detached state in Hibernate? 
+## Q. What is the difference between the transient, persistent and detached state in Hibernate? 
+The transient object is not associated with the session, hibernate knows nothing about them. Similarly, the detached object is also not associated with the session, but a Persistent object is associated with the session.
 #### Q. How properties of a class are mapped to the columns of a database table in Hibernate?
-#### Q. What is the usage of Configuration Interface in hibernate?
-#### Q. How can we use new custom interfaces to enhance functionality of built-in interfaces of hibernate?
+## Q. What is the usage of Configuration Interface in hibernate?
+The Configuration object is used to configure and bootstrap Hibernate. The application uses a Configuration instance to specify the location of mapping documents and Hibernate-specific properties and then create the SessionFactory .
+## Q. How can we use new custom interfaces to enhance functionality of built-in interfaces of hibernate?
+We can use extension interfaces in order to add any required functionality which isn’t supported by built-in interfaces.
 #### Q. What are POJOs and what is their significance?
 #### Q. How can we invoke stored procedures in hibernate?
+@NamedStoredProcedureQuery
 #### Q. What are the benefits of using Hibernate template?
+HibernateTemplate simplifies interactions with Hibernate Session.
+
+The functions that are common are simplified to single method calls.
+
+The sessions get automatically closed.
+
+The exceptions get automatically caught and are converted to runtime exceptions.
 #### Q. How can we get hibernate statistics?
+Hibernate can collect and log useful statistics about each database query and the whole session. This needs to be activated by setting the system property hibernate.generate_statistics to true and the log level for org.hibernate.stat to DEBUG.
 #### Q. How can we reduce database write action times in Hibernate?
 #### Q. When an instance goes in detached state in hibernate?
 #### Q. What the four ORM levels are in hibernate?
+The four levels are:
+* Pure Relational
+* Light Object Mapping
+* Medium Object Mapping
+* Full Object Mapping
 #### Q. What is the default cache service of hibernate?
 #### Q. What are the two mapping associations used in hibernate?
 #### Q. What is the usage of Hibernate QBC API?
 #### Q. In how many ways, objects can be fetched from database in hibernate?
+Hibernate supports four different fetching strategies:
+* Join Fetching.
+* Batch Fetching.
+* Select Fetching.
+* Sub-select Fetching.
 #### Q. How primary key is created by using hibernate?
 #### Q. How can we reattach any detached objects in Hibernate?
 #### Q. What are different ways to disable hibernate second level cache?
