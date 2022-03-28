@@ -1805,24 +1805,46 @@ log4j.logger.org.hibernate.SQL=debug
 log4j.logger.org.hibernate.type=trace 
 ```
 The first is equivalent to hibernate.show_sql=true legacy property, the second prints the bound parameters among other things.
-#### Q. What is cascading and what are different types of cascading?
-#### Q. How to integrate log4j logging in hibernate application?
-#### Q. What is HibernateTemplate class?
+## Q. What is cascading and what are different types of cascading?
+**ALL:** propagates all operations — including Hibernate-specific ones — from a parent to a child entity.
+**PERSIST:** Cascade Type PERSIST propagates the persist operation from a parent to a child entity. When we save the person entity, the address entity will also get saved.
+**MERGE:** CascadeType.MERGE propagates the merge operation from a parent to a child entity.
+**REMOVE:** CascadeType.REMOVE propagates the remove operation from parent to child entity. Similar to JPA's CascadeType.REMOVE, we have CascadeType.DELETE, which is specific to Hibernate. There is no difference between the two.
+**REFRESH:**  When we use this operation with Cascade Type REFRESH, the child entity also gets reloaded from the database whenever the parent entity is refreshed.
+**DETACH:** When we use CascadeType.DETACH, the child entity will also get removed from the persistent context.
+
+## Q. How to integrate log4j logging in hibernate application?
+## Q. What is HibernateTemplate class?
+**HibernateTemplate** is a helper class that is used to simplify the data access code. This class supports automatically converts HibernateExceptions which is a checked exception into DataAccessExceptions which is an unchecked exception.
 #### Q. How to integrate Hibernate with Servlet or Struts2 web applications?
 #### Q. Which design patterns are used in Hibernate framework?
 #### Q. What is Hibernate Validator Framework?
 #### Q. What is the benefit of Hibernate Tools Eclipse plugin?
 #### Q. What are the technologies that are supported by Hibernate?
-#### Q. What is your understanding of Hibernate proxy?
-#### Q. Can you explain Hibernate callback interfaces?
+## Q. What is your understanding of Hibernate proxy?
+The Hibernate Proxy is used to substitute an actual entity POJO (Plain Old Java Object).
+The Proxy class is generated at runtime and it extends the original entity class.
+Hibernate uses Proxy objects for entities is for to allow [lazy loading][1].
+When accessing basic properties on the Proxy, it simply delegates the call to the original entity.
+Every List, Set, Map type in the entity class is substituted by a PersistentList, PersistentSet, PersistentMap. These classes are responsible for intercepting a call to an uninitialized collection.
+The Proxy doesn't issue any SQL statement. It simply triggers an InitializeCollectionEvent, which is handled by the associated listener, that knows which initialization query to issue (depends on the configured fetch plan).
+## Q. Can you explain Hibernate callback interfaces?
+Callback interfaces allow the application to receive a notification when something interesting happens to an object—for example, when an object is loaded, saved, or deleted. Hibernate applications don't need to implement these callbacks, but they're useful for implementing certain kinds of generic functionality.
 #### Q. How to create database applications in Java with the use of Hibernate?
-#### Q. Can you share your views on mapping description files?
-#### Q. What are your thoughts on file mapping in Hibernate?
-#### Q. Can you explain version field?
-#### Q. What are your views on the function addClass?
-#### Q. Can you explain the role of addDirectory() and addjar() methods?
+## Q. Can you share your views on mapping description files?
+Mapping description files are used by Hibernate to configure functions. Mapping description files have the *.hbm extension, which facilitates the mapping between database tables and Java class. Whether to use mapping description files or not, entirely depends on business entities.
+## Q. What are your thoughts on file mapping in Hibernate?
+File mapping is the core function of Hibernate. It is a prime tool in database mapping. Typically, the mapping takes place between attributes and classes. Application of tags, after mapping the files in a database, can indicate the primary key.
+## Q. Can you explain version field?
+In case, offline information, backed by a database, is being changed, then data integrity at the application level is highly important. A versioning protocol, which is an advanced level of locking, is needed to support it. At this point in time, the use of the version field comes in. However, the implementation and design process is up to users, primarily developers.
+## Q. What are your views on the function addClass?
+The function addClass translates the name, basically from Java class to a file name. Subsequently, the Java ClassLoader loads the translated file as the input stream. The translation between one form to the other, precisely, from Java class to a file name, is called the add class function.
+## Q. Can you explain the role of addDirectory() and addjar() methods?
+The addDirectory() and addjar() methods in Hibernate allow users to load Hibernate documents. Both addDirectory() and addjar() methods play a significant role in simplifying a range of processes, such as layout, refactoring, configuration, and many more. AddDirectory() and addjar()  are greatly useful, especially when adding hibernate mapping with initialization files.
 #### Q. What do you understand by Hibernate tuning?
-#### Q. What is your understanding of Light Object Mapping?
+Optimizing the performance of Hibernate applications is known as Hibernate tuning. Hibernate tuning is typically performed by employing data caching, session management, and SQL optimization.
+## Q. What is your understanding of Light Object Mapping?
+The representation of entities is as classes, which are manually mapped to relational tables. Codes are masked from the domain logic applying particular design patterns. The light Object Mapping approach can be successful in case of applications where there are fewer entities, or for applications having data models that are metadata-driven.
 #### Q. How does Hibernate create the database connection?
 #### Q. What are possible ways to configure object-table mapping?
 #### Q. Which annotation is used to declare a class as a hibernate bean?
@@ -1832,14 +1854,48 @@ The first is equivalent to hibernate.show_sql=true legacy property, the second p
 #### Q. How do we specify a variable to be primary key for the table?
 #### Q. How do you configure the dialect in hibernate.cfg.xml?
 #### Q. How to configure the database URL and credentials in hibernate.cfg.xml?
-#### Q. How to configure the connection pool size?
+## Q. How to configure the connection pool size?
+```java
+<hibernate-configuration>
+
+    <session-factory>
+     ....
+
+       <property name="connection.pool_size">10</property>
+
+     ....
+    </session-factory>
+
+</hibernate-configuration>
+```
 #### Q. How do you configure folder scan for Hibernate beans?
 #### Q. How to configure hibernate beans without Spring framework?
-#### Q. Is it possible to connect multiple database in a single Java application using Hibernate?
-#### Q. Does Hibernate support polymorphism?
-#### Q. How many Hibernate sessions exist at any point of time in an application?
-#### Q. What is N+1 SELECT problem in Hibernate? What are some strategies to solve the N+1 SELECT problem in Hibernate? 
-#### Q. What is the requirement for a Java object to become a Hibernate entity object? 
+## Q. Is it possible to connect multiple database in a single Java application using Hibernate?
+Using annotation mappings as an example:
+```java
+Configuration cfg1 = new AnnotationConfiguration();
+cfg1.configure("/hibernate-oracle.cfg.xml");
+cfg1.addAnnotatedClass(SomeClass.class); // mapped classes
+cfg1.addAnnotatedClass(SomeOtherClass.class);
+SessionFactory sf1 = cfg1.buildSessionFactory();
+
+Configuration cfg2 = new AnnotationConfiguration();
+cfg2.configure("/hibernate-mysql.cfg.xml");
+cfg2.addAnnotatedClass(SomeClass.class); // could be the same or different than above
+cfg2.addAnnotatedClass(SomeOtherClass.class);
+SessionFactory sf2 = cfg2.buildSessionFactory();
+```
+Then use sf1 and sf2 to get the sessions for each database. For mapping files, you just use cfg.addClass instead of addAnnotatedClass. Put the cfg.xml files in the root package in this case. Those will have the Oracle or MySQL dialect and connection information.
+## Q. Does Hibernate support polymorphism?
+Yes ,Hibernate support polymorphism. Polymorphism queries and association is supported through mapping strategies. HQL to SQL
+## Q. How many Hibernate sessions exist at any point of time in an application?
+Hibernate session is a shared object. During any point of time, there exists only single shared session object that helps in managing transactions and getting connections from the connection pool. It must be noted that this is true only when a single database configuration is used. In case of multiple database configurations, Hibernate would create a separate session object to maintain the mapping and transactions for the other database.
+## Q. What is N+1 SELECT problem in Hibernate? What are some strategies to solve the N+1 SELECT problem in Hibernate? 
+The N+1 queries problem is a performance anti-pattern where an application spams the database with N+1 small queries instead of 1 query fetching all the data needed. 
+Eager Fetching With Result Limiting
+Lazy Fetching with join fetch.
+## Q. What is the requirement for a Java object to become a Hibernate entity object? 
+The class must have a public or protected, no-argument constructor. 
 #### Q. How do you log SQL queries issued by the Hibernate framework in Java application?
 #### Q. What is the difference between the transient, persistent and detached state in Hibernate? 
 #### Q. How properties of a class are mapped to the columns of a database table in Hibernate?
