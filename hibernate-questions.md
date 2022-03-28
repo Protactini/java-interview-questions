@@ -1907,6 +1907,7 @@ We can use extension interfaces in order to add any required functionality which
 #### Q. What are POJOs and what is their significance?
 ## Q. How can we invoke stored procedures in hibernate?
 @NamedStoredProcedureQuery
+@NamedNativeQueries
 ## Q. What are the benefits of using Hibernate template?
 HibernateTemplate simplifies interactions with Hibernate Session.
 
