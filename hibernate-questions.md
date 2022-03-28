@@ -1792,18 +1792,18 @@ Named queries are compiled when SessionFactory is instantiated (so, essentially,
 The obvious advantage, therefore, is that all your named queries are validated at that time rather than failing upon execution. 
 #### Q. How to log hibernate generated sql queries in log files?
 You need to enable logging for the the following categories:
-'''java
+```java
 org.hibernate.SQL   - set to debug to log all SQL DML statements as they are executed
 org.hibernate.type - set to trace to log all JDBC parameters
-'''
+```
 So a log4j configuration could look like:
-'''java
+```java
 # logs the SQL statements
 log4j.logger.org.hibernate.SQL=debug 
 
 # Logs the JDBC parameters passed to a query
 log4j.logger.org.hibernate.type=trace 
-'''
+```
 The first is equivalent to hibernate.show_sql=true legacy property, the second prints the bound parameters among other things.
 #### Q. What is cascading and what are different types of cascading?
 #### Q. How to integrate log4j logging in hibernate application?
